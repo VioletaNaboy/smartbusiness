@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { fetchUsersAsync, selectFilteredUsers } from './tableUsersSlice';
+import { fetchUsersAsync, selectFilteredUsers, selectStatus } from './tableUsersSlice';
 import TableRow from '../tableRow/TableRow';
 
 const Table: React.FC = () => {
     const dispatch = useAppDispatch();
     const users = useAppSelector(selectFilteredUsers);
+    const status = useAppSelector(selectStatus);
     useEffect(() => {
-        dispatch(fetchUsersAsync());
-    }, [dispatch]);
+        if (status === 'idle') {
+            dispatch(fetchUsersAsync());
+        }
+    }, [dispatch, status]);
     return (
         <table>
             <thead>

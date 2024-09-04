@@ -26,7 +26,6 @@ export const usersSlice = createAppSlice({
                 if (action.payload.field === 'id') {
                     return;
                 }
-
                 state.filteredUsers = state.users.filter(user => {
                     const fieldValue = user[action.payload.field];
                     if (typeof fieldValue === 'string') {
@@ -67,13 +66,5 @@ export const usersSlice = createAppSlice({
 export const { filterUsers, fetchUsersAsync } = usersSlice.actions;
 export const { selectUsers, selectFilteredUsers, selectStatus } = usersSlice.selectors;
 
-export const filterUsersIfNeeded =
-    (field: keyof User, value: string): AppThunk =>
-        (dispatch, getState) => {
-            const filteredUsers = selectFilteredUsers(getState());
-            if (!filteredUsers.length || value !== "") {
-                dispatch(filterUsers({ field, value }));
-            }
-        };
 
 export default usersSlice.reducer;

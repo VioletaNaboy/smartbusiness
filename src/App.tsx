@@ -1,6 +1,8 @@
+import React from 'react';
 import "./App.css"
 import Table from "./features/table/Table"
 import SearchInput from "./features/filter/SearchInput"
+
 
 const App = () => {
   return (
