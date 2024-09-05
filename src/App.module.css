@@ -8,4 +8,5 @@ main {
   margin-bottom: 42px;
   display: flex;
   gap: 24px;
+  flex-basis: 86px;
 }

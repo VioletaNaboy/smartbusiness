@@ -5,6 +5,8 @@ import { selectFilters } from '../filter/filtersSlice';
 import TableRow from '../tableRow/TableRow';
 import styles from './Table.module.css';
 
+import ReactLoading from 'react-loading';
+
 
 const Table: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -18,7 +20,24 @@ const Table: React.FC = () => {
             dispatch(fetchUsersAsync());
         }
         dispatch(filterUsers(filters));
-    }, [filters, dispatch]);
+    }, [filters, status, dispatch]);
+
+    if (status === 'loading') {
+        return (
+            < div className={styles.loaderContainer} >
+                <ReactLoading type="spin" color="#1DACD3" width='86px' />
+            </div >
+        );
+    }
+
+    if (status === 'failed') {
+        return (
+            <div className={styles.error}>
+                <p>Something went wrong. Please try again later.</p>
+            </div>
+        );
+    }
+
     return (
         <table className={styles.table}>
             <thead className={styles.header}>
@@ -30,9 +49,16 @@ const Table: React.FC = () => {
                 </tr>
             </thead>
             <tbody className={styles.body}>
-                {users.map((user) => (
-                    <TableRow key={user.id} user={user} />
-                ))}
+                {users.length === 0 ? (
+                    <tr>
+                        <td colSpan={4}>No users found.</td>
+                    </tr>
+                ) : (
+                    users.map((user) => (
+                        <TableRow key={user.id} user={user} />
+                    ))
+
+                )}
             </tbody>
         </table>
     );
