@@ -20,12 +20,15 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // The store setup is wrapped in `makeStore` to allow reuse
 // when setting up tests that need the same store config
-export const makeStore = (preloadedState?: Partial<RootState>) => {
+export const makeStore = () => {
   const store = configureStore({
     reducer: persistedReducer,
-    middleware: getDefaultMiddleware => {
-      return getDefaultMiddleware();
-    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
   });
   return store;
 };
