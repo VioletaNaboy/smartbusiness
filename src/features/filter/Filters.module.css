@@ -1,0 +1,22 @@
+.input,
+.btn {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 24px;
+    text-transform: uppercase;
+}
+
+.input {
+    background: linear-gradient(rgba(255, 255, 255, 0.6),
+            rgba(255, 255, 255, 0.4));
+}
+
+.btn {
+    color: white;
+    background: #1DACD3;
+}
+
+.btn:hover,
+.btn:focus {
+    background: #26d36e;
+}

@@ -1,0 +1,25 @@
+.table {
+    width: 80%;
+    margin: 0 auto;
+    background: linear-gradient(rgba(245, 245, 245, 0.4),
+            rgba(237, 234, 234, 0.6));
+    border-collapse: collapse;
+}
+
+.table,
+.body th,
+.body td {
+    border: 1px solid white;
+}
+
+.header th {
+    padding: 12px;
+    color: white;
+    text-align: left;
+    background: #1DACD3;
+}
+
+.body td {
+    padding: 12px;
+    text-align: left;
+}

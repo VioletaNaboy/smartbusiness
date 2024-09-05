@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useAppDispatch } from '../../app/hooks';
-import { filterUsers } from '../table/tableUsersSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectFilters, setFilter } from './filtersSlice';
 import { User } from '../../types/user';
+
+import styles from './Filters.module.css'
 
 interface SearchInputProps {
     field: keyof User;
@@ -9,17 +11,14 @@ interface SearchInputProps {
 
 const SearchInput: React.FC<SearchInputProps> = ({ field }) => {
     const dispatch = useAppDispatch();
-    const [value, setValue] = useState<string>(() => {
-        return localStorage.getItem(`filter-${field}`) || '';
-    });
+    const filters = useAppSelector(selectFilters);
+    const value = filters[field] || '';
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
-        setValue(newValue);
-        localStorage.setItem(`filter-${field}`, newValue);
-        dispatch(filterUsers({ field, value: newValue }));
+        dispatch(setFilter({ field, value: newValue }));
     };
-    return <input type="text" placeholder={`Search by ${field}`} value={value} onChange={handleChange} />;
+    return <input className={styles.input} type="text" placeholder={`Search by ${field}`} value={value} onChange={handleChange} />;
 };
 
 export default SearchInput;

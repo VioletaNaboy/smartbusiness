@@ -1,0 +1,11 @@
+main {
+  padding: 78px 0 112px;
+}
+
+.filter {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 42px;
+  display: flex;
+  gap: 24px;
+}

@@ -1,0 +1,18 @@
+.header {
+    background-color: #FFFFFF;
+    padding: 24px 0 32px;
+}
+
+.nav {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: end;
+    gap: 86px;
+}
+
+.navLink {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 24px;
+}

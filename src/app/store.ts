@@ -3,6 +3,7 @@ import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import usersSlice from "../features/table/tableUsersSlice";
+import filtersSlice from "../features/filter/filtersSlice";
 
 const persistConfig = {
   key: "root",
@@ -11,10 +12,11 @@ const persistConfig = {
 
 
 const rootReducer = combineSlices({
-  users: usersSlice
+  users: usersSlice,
+  filters: filtersSlice,
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof store.getState>;
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

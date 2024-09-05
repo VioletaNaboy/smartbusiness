@@ -1,20 +1,26 @@
 import React from 'react';
-import "./App.css"
-import Table from "./features/table/Table"
-import SearchInput from "./features/filter/SearchInput"
+import Header from './features/header/Header';
+import Table from "./features/table/Table";
+import SearchInput from "./features/filter/SearchInput";
+import ClearButton from './features/filter/ClearButton';
 
+import styles from './App.module.css';
 
 const App = () => {
   return (
-    <div className="App">
-      <div>
-        <SearchInput field="name" />
-        <SearchInput field="username" />
-        <SearchInput field="email" />
-        <SearchInput field="phone" />
-      </div>
-      <Table />
-    </div>
+    <>
+      <Header />
+      <main>
+        <div className={styles.filter}>
+          <SearchInput field="name" />
+          <SearchInput field="username" />
+          <SearchInput field="email" />
+          <SearchInput field="phone" />
+          <ClearButton />
+        </div>
+        <Table />
+      </main>
+    </>
   )
 }
 

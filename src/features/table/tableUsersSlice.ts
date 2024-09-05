@@ -1,6 +1,6 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createAppSlice } from "../../app/createAppSlice";
-import type { AppThunk } from "../../app/store";
+import { FilterState } from "../filter/filtersSlice";
 import { User } from '../../types/user';
 import { fetchUsers } from '../../app/api';
 
@@ -17,23 +17,25 @@ const initialState: UsersState = {
     status: 'idle',
 };
 
+
 export const usersSlice = createAppSlice({
     name: 'users',
     initialState,
     reducers: create => ({
         filterUsers: create.reducer(
-            (state, action: PayloadAction<{ field: keyof User; value: string }>) => {
-                if (action.payload.field === 'id') {
-                    return;
-                }
+            (state, action: PayloadAction<FilterState['filters']>) => {
+                const filters = action.payload;
                 state.filteredUsers = state.users.filter(user => {
-                    const fieldValue = user[action.payload.field];
-                    if (typeof fieldValue === 'string') {
-                        return fieldValue.toLowerCase().includes(action.payload.value.toLowerCase());
-                    }
-                    return fieldValue.toString().toLowerCase().includes(action.payload.value.toLowerCase());
+                    return Object.entries(filters).every(([key, value]) => {
+                        if (value === undefined || value === '') return true;
+                        const fieldValue = user[key as keyof User];
+                        if (typeof fieldValue === 'string') {
+                            return fieldValue.toLowerCase().includes(value.toLowerCase());
+                        }
+                        return fieldValue.toString().toLowerCase().includes(value.toLowerCase());
+                    });
                 });
-            }
+            },
 
         ),
         fetchUsersAsync: create.asyncThunk(
