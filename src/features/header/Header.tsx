@@ -6,7 +6,7 @@ const Header = () => {
         <header className={styles.header}>
             <div className={styles.nav}>
                 <img src={logo} alt="Logo" />
-                <a className={styles.navLink} href="https://github.com/VioletaNaboy/smartbusiness" target="_blank" rel="noopener noreferrer" aria-label='GitHub link'>JUNIOR FRONTEND DEVELOPER ASSIGNMENT</a>
+                <a className={styles.navLink} href="https://github.com/VioletaNaboy/smartbusiness" target="_blank" rel="noopener noreferrer" aria-label='GitHub link'>FRONTEND DEVELOPER ASSIGNMENT</a>
             </div>
         </header>
     );

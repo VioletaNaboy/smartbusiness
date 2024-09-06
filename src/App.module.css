@@ -1,5 +1,16 @@
-main {
-  padding: 78px 0 112px;
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 44px 0;
+
+  @media screen and (min-width: 1280px) {
+    width: 1200px;
+  }
+
+}
+
+.wrapper {
+  overflow-x: auto;
 }
 
 .filter {
@@ -9,4 +20,5 @@ main {
   display: flex;
   gap: 24px;
   flex-basis: 86px;
+  flex-wrap: wrap;
 }

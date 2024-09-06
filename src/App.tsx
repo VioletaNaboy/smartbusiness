@@ -1,8 +1,9 @@
-import React from 'react';
 import Header from './features/header/Header';
+import MarqueeEl from './features/header/MarqueeEl';
 import Table from "./features/table/Table";
 import SearchInput from "./features/filter/SearchInput";
 import ClearButton from './features/filter/ClearButton';
+
 
 import styles from './App.module.css';
 
@@ -10,7 +11,8 @@ const App = () => {
   return (
     <>
       <Header />
-      <main>
+      <MarqueeEl />
+      <div className={styles.container}>
         <div className={styles.filter}>
           <SearchInput field="name" />
           <SearchInput field="username" />
@@ -18,8 +20,10 @@ const App = () => {
           <SearchInput field="phone" />
           <ClearButton />
         </div>
-        <Table />
-      </main>
+        <div className={styles.wrapper}>
+          <Table />
+        </div>
+      </div>
     </>
   )
 }
